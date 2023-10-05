@@ -4,7 +4,7 @@
 
     <groupId>com.whatsapp.api</groupId>
     <artifactId>whatsapp-business-java-api</artifactId>
-    <version>v0.3.4</version>
+    <version>v0.3.4-tabia</version>
     <licenses>
         <license>
             <name>The MIT License</name>
@@ -37,11 +37,13 @@
         <com.squareup.okhttp3.version>5.0.0-alpha.11</com.squareup.okhttp3.version>
     </properties>
 
+
+
     <distributionManagement>
         <repository>
             <id>github</id>
             <name>GitHub Packages</name>
-            <url>https://maven.pkg.github.com/Bindambc/whatsapp-business-java-api</url>
+	    <url>https://maven.pkg.github.com/tabiahealth/packages</url>     
         </repository>
     </distributionManagement>
 
