@@ -1,5 +1,6 @@
 package com.whatsapp.api.domain.phone;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -24,6 +25,7 @@ import com.whatsapp.api.domain.phone.type.QualityRatingType;
  * @see <a href="https://www.facebook.com/business/help/896873687365001">About WhatsApp Business Account Message Quality Rating</a>
  */
 @JsonInclude(value = Include.NON_NULL)
+@JsonIgnoreProperties(ignoreUnknown = true)
 public record PhoneNumber(
 
         @JsonProperty("display_phone_number") String displayPhoneNumber,
