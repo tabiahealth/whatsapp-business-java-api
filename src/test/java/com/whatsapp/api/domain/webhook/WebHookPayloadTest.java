@@ -12,6 +12,8 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import static com.whatsapp.api.domain.webhook.type.EventType.PHONE_NUMBER_REMOVED;
+
 class WebHookPayloadTest extends TestUtils {
 
     private final String JSON_FOLDER = "/deserialization/";
@@ -453,6 +455,39 @@ class WebHookPayloadTest extends TestUtils {
         Assertions.assertEquals("https://developers.facebook.com/docs/whatsapp/cloud-api/support/error-codes/", statuses.get(0).errors().get(0).href());
         Assertions.assertEquals("Message failed to send because more than 24 hours have passed since the customer last replied to this number.", statuses.get(0).errors().get(0).errorData().details());
 
+    }
+
+    @Test
+    void testOnboading() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "onboarding.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+
+    }
+
+    @Test
+    void testPartnerAdded() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "partnerAdded.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+    }
+
+    @Test
+    void testPhoneNumberAdded() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "phoneNumberAdded.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+    }
+
+    @Test
+    void testPhoneNumberRemoved() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "phoneNumberRemoved.json");
+
+        var obj = WebHook.constructEvent(payload);
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), PHONE_NUMBER_REMOVED);
     }
 }
 

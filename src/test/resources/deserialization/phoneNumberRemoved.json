@@ -1,0 +1,18 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "123456789",
+      "time": 1701712050,
+      "changes": [
+        {
+          "field": "account_update",
+          "value": {
+            "event": "PHONE_NUMBER_REMOVED",
+            "phone_number": "551199990000"
+          }
+        }
+      ]
+    }
+  ]
+}

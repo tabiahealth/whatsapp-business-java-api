@@ -81,6 +81,12 @@ public enum EventType {
     /**
      * Pin changed event type.
      */
-    PIN_CHANGED
+    PIN_CHANGED,
+
+    PHONE_NUMBER_ADDED,
+
+    PHONE_NUMBER_REMOVED,
+
+    PARTNER_ADDED
 
 }

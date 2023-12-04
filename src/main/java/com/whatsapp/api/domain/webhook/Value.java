@@ -60,7 +60,12 @@ public record Value(
 
         @JsonProperty("ban_info") BanInfo banInfo,
 
-        @JsonProperty("restriction_info") List<RestrictionInfo> restrictionInfo
+        @JsonProperty("restriction_info") List<RestrictionInfo> restrictionInfo,
+
+        @JsonProperty("old_limit") String oldLimit,
+
+        @JsonProperty("waba_info") WabaInfo wabaInfo
+
 
 
 ) {
