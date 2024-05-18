@@ -380,6 +380,17 @@ class WebHookPayloadTest extends TestUtils {
     }
 
     @Test
+    void testReceiverIsIncapable() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "receiverIsIncapable.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(MessageStatus.FAILED, obj.entry().get(0).changes().get(0).value().statuses().get(0).status());
+    }
+
+
+
+    @Test
     void testDeserializationPhoneNumberNameUpdate() throws IOException, URISyntaxException {
         var payload = fromResource(JSON_FOLDER + "phoneNumberNameUpdate.json");
 
