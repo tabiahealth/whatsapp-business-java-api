@@ -14,6 +14,7 @@ import java.net.URISyntaxException;
 
 import static com.whatsapp.api.domain.templates.type.Category.MARKETING;
 import static com.whatsapp.api.domain.templates.type.Category.UTILITY;
+import static com.whatsapp.api.domain.webhook.type.EventType.PENDING_DELETION;
 import static com.whatsapp.api.domain.webhook.type.EventType.PHONE_NUMBER_REMOVED;
 
 class WebHookPayloadTest extends TestUtils {
@@ -363,6 +364,18 @@ class WebHookPayloadTest extends TestUtils {
         Assertions.assertEquals(UTILITY, obj.entry().get(0).changes().get(0).value().previousCategory());
         Assertions.assertEquals("1234567", obj.entry().get(0).changes().get(0).value().messageTemplateId());
         Assertions.assertEquals(FieldType.TEMPLATE_CATEGORY_UPDATE, obj.entry().get(0).changes().get(0).field());
+
+    }
+
+    @Test
+    void testPendingDeletionTemplate() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "pendingDeletionTemplate.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(PENDING_DELETION, obj.entry().get(0).changes().get(0).value().event());
+        Assertions.assertEquals("905507062668800", obj.entry().get(0).changes().get(0).value().messageTemplateId());
+        Assertions.assertEquals(FieldType.MESSAGE_TEMPLATE_STATUS_UPDATE, obj.entry().get(0).changes().get(0).field());
 
     }
 

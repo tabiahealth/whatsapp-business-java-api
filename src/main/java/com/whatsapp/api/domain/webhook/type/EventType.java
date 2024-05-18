@@ -56,6 +56,10 @@ public enum EventType {
      */
     REJECTED, //
     /**
+     * This event type is used when a template is in the process of being deleted.
+     */
+    PENDING_DELETION, //
+    /**
      * Disabled event type.
      */
     DISABLED, //
