@@ -11,6 +11,9 @@ public enum FieldType {
      * Notifies you when the message template status changes, by being approved or rejected, or if it has been disabled.
      */
     MESSAGE_TEMPLATE_STATUS_UPDATE("message_template_status_update"),
+
+    TEMPLATE_CATEGORY_UPDATE("template_category_update"),
+
     /**
      * Notifies you when the name review associated with a phone number has a status update.
      */
