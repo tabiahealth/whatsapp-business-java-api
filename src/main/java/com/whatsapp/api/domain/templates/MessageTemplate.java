@@ -37,7 +37,7 @@ public class MessageTemplate {
 
 
     @JsonProperty("allow_category_change")
-    private Boolean allowCategoryChange = false;
+    private Boolean allowCategoryChange;
 
     /**
      * Add component message template.
