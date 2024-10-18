@@ -402,6 +402,18 @@ class WebHookPayloadTest extends TestUtils {
     }
 
     @Test
+    void testAccountAlerts() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "accountAlerts.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals("412692005257255", obj.entry().get(0).changes().get(0).value().entityId());
+        Assertions.assertEquals(FieldType.ACCOUNT_ALERTS, obj.entry().get(0).changes().get(0).field());
+    }
+
+
+
+    @Test
     void testReceiverIsIncapable() throws IOException, URISyntaxException {
         var payload = fromResource(JSON_FOLDER + "receiverIsIncapable.json");
 

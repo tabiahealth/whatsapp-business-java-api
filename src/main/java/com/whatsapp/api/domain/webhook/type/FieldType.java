@@ -26,6 +26,7 @@ public enum FieldType {
      * Notifies you when a WABA has been upgraded from unverified trial experience to a verified account, or if a WABA has been banned.
      */
     ACCOUNT_UPDATE("account_update"),
+    ACCOUNT_ALERTS("account_alerts"),
     /**
      * Notifies you when a WABA has been reviewed.
      */
