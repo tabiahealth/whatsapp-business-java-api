@@ -4,7 +4,7 @@
 
     <groupId>com.whatsapp.api</groupId>
     <artifactId>whatsapp-business-java-api</artifactId>
-    <version>v0.3.5-tabia.5</version>
+    <version>v0.3.5-tabia.6</version>
     <licenses>
         <license>
             <name>The MIT License</name>

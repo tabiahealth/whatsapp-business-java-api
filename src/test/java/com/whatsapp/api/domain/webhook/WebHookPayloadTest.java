@@ -362,7 +362,16 @@ class WebHookPayloadTest extends TestUtils {
 
         Assertions.assertEquals(EventType.PARTNER_REMOVED, obj.entry().get(0).changes().get(0).value().event());
         Assertions.assertEquals(FieldType.ACCOUNT_UPDATE, obj.entry().get(0).changes().get(0).field());
+    }
 
+    @Test
+    void testTemplateStatusUpdate() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "templateStatusUpdate.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(EventType.PENDING_DELETION, obj.entry().get(0).changes().get(0).value().event());
+        Assertions.assertEquals(FieldType.MESSAGE_TEMPLATE_STATUS_UPDATE, obj.entry().get(0).changes().get(0).field());
     }
 
     @Test
