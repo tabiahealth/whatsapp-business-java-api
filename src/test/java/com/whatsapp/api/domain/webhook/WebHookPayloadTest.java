@@ -411,6 +411,15 @@ class WebHookPayloadTest extends TestUtils {
         Assertions.assertEquals(FieldType.ACCOUNT_ALERTS, obj.entry().get(0).changes().get(0).field());
     }
 
+    @Test
+    void testAccountDeleted() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "accountDeleted.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(ACCOUNT_DELETED, obj.entry().get(0).changes().get(0).value().event());
+        Assertions.assertEquals(FieldType.ACCOUNT_UPDATE, obj.entry().get(0).changes().get(0).field());
+    }
 
 
     @Test
@@ -421,7 +430,6 @@ class WebHookPayloadTest extends TestUtils {
 
         Assertions.assertEquals(MessageStatus.FAILED, obj.entry().get(0).changes().get(0).value().statuses().get(0).status());
     }
-
 
 
     @Test

@@ -1,0 +1,17 @@
+{
+  "entry": [
+    {
+      "id": "whatsapp-business-account-id",
+      "time": 1721046889,
+      "changes": [
+        {
+          "field": "account_update",
+          "value": {
+            "event": "ACCOUNT_DELETED"
+          }
+        }
+      ]
+    }
+  ],
+  "object": "whatsapp_business_account"
+}

@@ -19,6 +19,7 @@ public enum EventType {
      */
     ACCOUNT_RESTRICTION,//
 
+    ACCOUNT_DELETED,//
     /**
      * Onboarding event type.
      */
