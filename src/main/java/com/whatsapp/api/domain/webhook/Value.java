@@ -68,9 +68,12 @@ public record Value(
         @JsonProperty("waba_info") WabaInfo wabaInfo,
 
         @JsonProperty("new_category") Category newCategory,
-        @JsonProperty("previous_category") Category previousCategory
+        @JsonProperty("previous_category") Category previousCategory,
 
-        ) {
+        @JsonProperty("max_daily_conversation_per_phone") Integer maxDailyConversationPerPhone,
+        @JsonProperty("max_phone_numbers_per_waba") Integer maxPhoneNumbersPerWaba,
+        @JsonProperty("business_verification_status") String businessVerificationStatus
 
+) {
 
 }

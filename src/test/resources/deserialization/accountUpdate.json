@@ -1,0 +1,18 @@
+{
+  "entry": [
+    {
+      "id": "whatsapp-business-account-id",
+      "time": 1726078833,
+      "changes": [
+        {
+          "field": "account_update",
+          "value": {
+            "event": "BUSINESS_VERIFICATION_STATUS_UPDATE",
+            "business_verification_status": "BUSINESS_VERIFIED"
+          }
+        }
+      ]
+    }
+  ],
+  "object": "whatsapp_business_account"
+}

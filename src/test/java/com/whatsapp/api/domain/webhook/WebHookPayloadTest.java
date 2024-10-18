@@ -14,8 +14,8 @@ import java.net.URISyntaxException;
 
 import static com.whatsapp.api.domain.templates.type.Category.MARKETING;
 import static com.whatsapp.api.domain.templates.type.Category.UTILITY;
-import static com.whatsapp.api.domain.webhook.type.EventType.PENDING_DELETION;
-import static com.whatsapp.api.domain.webhook.type.EventType.PHONE_NUMBER_REMOVED;
+import static com.whatsapp.api.domain.webhook.type.EventType.*;
+import static com.whatsapp.api.domain.webhook.type.FieldType.BUSINESS_CAPABILITY_UPDATE;
 
 class WebHookPayloadTest extends TestUtils {
 
@@ -377,6 +377,28 @@ class WebHookPayloadTest extends TestUtils {
         Assertions.assertEquals("905507062668800", obj.entry().get(0).changes().get(0).value().messageTemplateId());
         Assertions.assertEquals(FieldType.MESSAGE_TEMPLATE_STATUS_UPDATE, obj.entry().get(0).changes().get(0).field());
 
+    }
+
+    @Test
+    void testBusinessCapabilityUpdate() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "businessCapabilityUpdate.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(1000, obj.entry().get(0).changes().get(0).value().maxDailyConversationPerPhone());
+        Assertions.assertEquals(25, obj.entry().get(0).changes().get(0).value().maxPhoneNumbersPerWaba());
+        Assertions.assertEquals(FieldType.BUSINESS_CAPABILITY_UPDATE, obj.entry().get(0).changes().get(0).field());
+    }
+
+    @Test
+    void testaAccountUpdate() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "accountUpdate.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(BUSINESS_VERIFICATION_STATUS_UPDATE, obj.entry().get(0).changes().get(0).value().event());
+        Assertions.assertEquals("BUSINESS_VERIFIED", obj.entry().get(0).changes().get(0).value().businessVerificationStatus());
+        Assertions.assertEquals(FieldType.ACCOUNT_UPDATE, obj.entry().get(0).changes().get(0).field());
     }
 
     @Test

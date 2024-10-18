@@ -34,6 +34,7 @@ public enum FieldType {
      * Notifies you about messages
      */
     MESSAGES("messages"),
+    BUSINESS_CAPABILITY_UPDATE("business_capability_update"),
     /**
      * A notification is sent to you when:
      * <ul> <li>you request to disable two-step verification code</li>
