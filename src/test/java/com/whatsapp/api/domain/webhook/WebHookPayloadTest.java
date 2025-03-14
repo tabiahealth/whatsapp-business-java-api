@@ -576,6 +576,13 @@ class WebHookPayloadTest extends TestUtils {
     }
 
     @Test
+    void testPartnerAppInstalled() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "partnerAppInstalled.json");
+
+        var obj = WebHook.constructEvent(payload);
+    }
+
+    @Test
     void testPhoneNumberAdded() throws IOException, URISyntaxException {
         var payload = fromResource(JSON_FOLDER + "phoneNumberAdded.json");
 
