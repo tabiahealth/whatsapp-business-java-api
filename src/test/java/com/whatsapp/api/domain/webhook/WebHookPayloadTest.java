@@ -564,7 +564,7 @@ class WebHookPayloadTest extends TestUtils {
 
         var obj = WebHook.constructEvent(payload);
 
-
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), ONBOARDING);
     }
 
     @Test
@@ -573,6 +573,16 @@ class WebHookPayloadTest extends TestUtils {
 
         var obj = WebHook.constructEvent(payload);
 
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), PARTNER_ADDED);
+    }
+
+    @Test
+    void testPartnerAccountViolation() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "accountViolation.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), ACCOUNT_VIOLATION);
     }
 
     @Test
@@ -580,6 +590,8 @@ class WebHookPayloadTest extends TestUtils {
         var payload = fromResource(JSON_FOLDER + "partnerAppInstalled.json");
 
         var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), PARTNER_APP_INSTALLED);
     }
 
     @Test
@@ -588,6 +600,7 @@ class WebHookPayloadTest extends TestUtils {
 
         var obj = WebHook.constructEvent(payload);
 
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), PHONE_NUMBER_ADDED);
     }
 
     @Test
