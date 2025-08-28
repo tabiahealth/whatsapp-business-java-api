@@ -1,0 +1,21 @@
+{
+  "object": "whatsapp_business_account",
+  "entry": [
+    {
+      "id": "whatsapp-business-account-id",
+      "time": 1604703141,
+      "changes": [
+        {
+          "field": "template_category_update",
+          "value": {
+            "new_category": "MARKETING",
+            "previous_category": "UTILITY",
+            "message_template_id": 1234567,
+            "message_template_name": "My message template",
+            "message_template_language": "en-US"
+          }
+        }
+      ]
+    }
+  ]
+}

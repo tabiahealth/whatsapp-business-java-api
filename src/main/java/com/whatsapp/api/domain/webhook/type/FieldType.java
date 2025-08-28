@@ -11,6 +11,9 @@ public enum FieldType {
      * Notifies you when the message template status changes, by being approved or rejected, or if it has been disabled.
      */
     MESSAGE_TEMPLATE_STATUS_UPDATE("message_template_status_update"),
+
+    TEMPLATE_CATEGORY_UPDATE("template_category_update"),
+
     /**
      * Notifies you when the name review associated with a phone number has a status update.
      */
@@ -23,6 +26,7 @@ public enum FieldType {
      * Notifies you when a WABA has been upgraded from unverified trial experience to a verified account, or if a WABA has been banned.
      */
     ACCOUNT_UPDATE("account_update"),
+    ACCOUNT_ALERTS("account_alerts"),
     /**
      * Notifies you when a WABA has been reviewed.
      */
@@ -31,6 +35,7 @@ public enum FieldType {
      * Notifies you about messages
      */
     MESSAGES("messages"),
+    BUSINESS_CAPABILITY_UPDATE("business_capability_update"),
     /**
      * A notification is sent to you when:
      * <ul> <li>you request to disable two-step verification code</li>

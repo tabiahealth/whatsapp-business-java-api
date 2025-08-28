@@ -1,0 +1,17 @@
+{
+  "entry": [
+    {
+      "id": "1111111111111",
+      "time": 1721047121,
+      "changes": [
+        {
+          "field": "account_update",
+          "value": {
+            "event": "PARTNER_REMOVED"
+          }
+        }
+      ]
+    }
+  ],
+  "object": "whatsapp_business_account"
+}

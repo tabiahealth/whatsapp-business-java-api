@@ -1,0 +1,20 @@
+{
+  "entry": [
+    {
+      "id": "1234567890",
+      "time": 1701713174,
+      "changes": [
+        {
+          "field": "phone_number_quality_update",
+          "value": {
+            "event": "ONBOARDING",
+            "old_limit": "TIER_NOT_SET",
+            "current_limit": "TIER_1K",
+            "display_phone_number": "551199990000"
+          }
+        }
+      ]
+    }
+  ],
+  "object": "whatsapp_business_account"
+}

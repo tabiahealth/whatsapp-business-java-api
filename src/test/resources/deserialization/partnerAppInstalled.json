@@ -1,0 +1,21 @@
+{
+  "entry": [
+    {
+      "id": "12121212",
+      "time": 1701703133,
+      "changes": [
+        {
+          "field": "account_update",
+          "value": {
+            "event": "PARTNER_APP_INSTALLED",
+            "waba_info": {
+              "waba_id": "123456789",
+              "owner_business_id": "987654321"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "object": "whatsapp_business_account"
+}

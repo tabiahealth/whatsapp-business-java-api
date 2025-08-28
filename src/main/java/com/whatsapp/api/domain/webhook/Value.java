@@ -1,6 +1,7 @@
 package com.whatsapp.api.domain.webhook;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.whatsapp.api.domain.templates.type.Category;
 import com.whatsapp.api.domain.webhook.type.EventType;
 
 import java.util.List;
@@ -60,10 +61,27 @@ public record Value(
 
         @JsonProperty("ban_info") BanInfo banInfo,
 
-        @JsonProperty("restriction_info") List<RestrictionInfo> restrictionInfo
+        @JsonProperty("restriction_info") List<RestrictionInfo> restrictionInfo,
 
+        @JsonProperty("old_limit") String oldLimit,
+
+        @JsonProperty("waba_info") WabaInfo wabaInfo,
+
+        @JsonProperty("new_category") Category newCategory,
+        @JsonProperty("previous_category") Category previousCategory,
+
+        @JsonProperty("max_daily_conversation_per_phone") Integer maxDailyConversationPerPhone,
+        @JsonProperty("max_phone_numbers_per_waba") Integer maxPhoneNumbersPerWaba,
+        @JsonProperty("business_verification_status") String businessVerificationStatus,
+
+        // account alerts
+        @JsonProperty("entity_id") String entityId,
+        @JsonProperty("alert_type") String alertType,
+        @JsonProperty("entity_type") String entityType,
+        @JsonProperty("alert_status") String alertStatus,
+        @JsonProperty("alert_severity") String alertSeverity,
+        @JsonProperty("alert_description") String alertDescription
 
 ) {
-
 
 }

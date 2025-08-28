@@ -19,6 +19,7 @@ public enum EventType {
      */
     ACCOUNT_RESTRICTION,//
 
+    ACCOUNT_DELETED,//
     /**
      * Onboarding event type.
      */
@@ -56,6 +57,10 @@ public enum EventType {
      */
     REJECTED, //
     /**
+     * This event type is used when a template is in the process of being deleted.
+     */
+    PENDING_DELETION, //
+    /**
      * Disabled event type.
      */
     DISABLED, //
@@ -81,6 +86,16 @@ public enum EventType {
     /**
      * Pin changed event type.
      */
-    PIN_CHANGED
+    PIN_CHANGED,
+
+    PHONE_NUMBER_ADDED,
+
+    PHONE_NUMBER_REMOVED,
+
+    PARTNER_ADDED,
+    PARTNER_REMOVED,
+    PARTNER_APP_INSTALLED,
+    BUSINESS_VERIFICATION_STATUS_UPDATE,
+    ACCOUNT_VIOLATION
 
 }

@@ -2,6 +2,7 @@ package com.whatsapp.api.domain.templates;
 
 
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.whatsapp.api.domain.templates.type.Category;
 import com.whatsapp.api.domain.templates.type.LanguageType;
 
@@ -34,6 +35,9 @@ public class MessageTemplate {
      */
     private List<Component<?>> components;
 
+
+    @JsonProperty("allow_category_change")
+    private Boolean allowCategoryChange;
 
     /**
      * Add component message template.
@@ -120,6 +124,11 @@ public class MessageTemplate {
      */
     public MessageTemplate setCategory(Category category) {
         this.category = category;
+        return this;
+    }
+
+    public MessageTemplate setAllowCategoryChange(Boolean value) {
+        this.allowCategoryChange = value;
         return this;
     }
 

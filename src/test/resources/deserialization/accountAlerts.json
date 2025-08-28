@@ -1,0 +1,22 @@
+{
+  "entry": [
+    {
+      "id": "whatsapp-business-account-id",
+      "time": 1724629457,
+      "changes": [
+        {
+          "field": "account_alerts",
+          "value": {
+            "entity_id": "412692005257255",
+            "alert_type": "OBA_APPROVED",
+            "entity_type": "PHONE_NUMBER",
+            "alert_status": "NONE",
+            "alert_severity": "INFORMATIONAL",
+            "alert_description": "This phone number now has a green badge next to its name showing that it's an authentic and notable business account. Add more details to your business profile to increase customer trust."
+          }
+        }
+      ]
+    }
+  ],
+  "object": "whatsapp_business_account"
+}

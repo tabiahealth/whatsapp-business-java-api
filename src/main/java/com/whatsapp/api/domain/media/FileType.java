@@ -23,6 +23,7 @@ public enum FileType {
      * Text file type.
      */
     TEXT("text/plain"),
+    ZIP("application/zip"),
     /**
      * Pdf file type.
      */

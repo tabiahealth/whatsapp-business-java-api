@@ -12,6 +12,11 @@ import org.junit.jupiter.api.Test;
 import java.io.IOException;
 import java.net.URISyntaxException;
 
+import static com.whatsapp.api.domain.templates.type.Category.MARKETING;
+import static com.whatsapp.api.domain.templates.type.Category.UTILITY;
+import static com.whatsapp.api.domain.webhook.type.EventType.*;
+import static com.whatsapp.api.domain.webhook.type.FieldType.BUSINESS_CAPABILITY_UPDATE;
+
 class WebHookPayloadTest extends TestUtils {
 
     private final String JSON_FOLDER = "/deserialization/";
@@ -350,6 +355,104 @@ class WebHookPayloadTest extends TestUtils {
     }
 
     @Test
+    void testPartnerDeleted() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "partnerDeleted.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(EventType.PARTNER_REMOVED, obj.entry().get(0).changes().get(0).value().event());
+        Assertions.assertEquals(FieldType.ACCOUNT_UPDATE, obj.entry().get(0).changes().get(0).field());
+    }
+
+    @Test
+    void testTemplateStatusUpdate() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "templateStatusUpdate.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(EventType.PENDING_DELETION, obj.entry().get(0).changes().get(0).value().event());
+        Assertions.assertEquals(FieldType.MESSAGE_TEMPLATE_STATUS_UPDATE, obj.entry().get(0).changes().get(0).field());
+    }
+
+    @Test
+    void testTemplateCategoryChange() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "templateCategoryUpdate.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(MARKETING, obj.entry().get(0).changes().get(0).value().newCategory());
+        Assertions.assertEquals(UTILITY, obj.entry().get(0).changes().get(0).value().previousCategory());
+        Assertions.assertEquals("1234567", obj.entry().get(0).changes().get(0).value().messageTemplateId());
+        Assertions.assertEquals(FieldType.TEMPLATE_CATEGORY_UPDATE, obj.entry().get(0).changes().get(0).field());
+
+    }
+
+    @Test
+    void testPendingDeletionTemplate() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "pendingDeletionTemplate.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(PENDING_DELETION, obj.entry().get(0).changes().get(0).value().event());
+        Assertions.assertEquals("905507062668800", obj.entry().get(0).changes().get(0).value().messageTemplateId());
+        Assertions.assertEquals(FieldType.MESSAGE_TEMPLATE_STATUS_UPDATE, obj.entry().get(0).changes().get(0).field());
+
+    }
+
+    @Test
+    void testBusinessCapabilityUpdate() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "businessCapabilityUpdate.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(1000, obj.entry().get(0).changes().get(0).value().maxDailyConversationPerPhone());
+        Assertions.assertEquals(25, obj.entry().get(0).changes().get(0).value().maxPhoneNumbersPerWaba());
+        Assertions.assertEquals(FieldType.BUSINESS_CAPABILITY_UPDATE, obj.entry().get(0).changes().get(0).field());
+    }
+
+    @Test
+    void testaAccountUpdate() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "accountUpdate.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(BUSINESS_VERIFICATION_STATUS_UPDATE, obj.entry().get(0).changes().get(0).value().event());
+        Assertions.assertEquals("BUSINESS_VERIFIED", obj.entry().get(0).changes().get(0).value().businessVerificationStatus());
+        Assertions.assertEquals(FieldType.ACCOUNT_UPDATE, obj.entry().get(0).changes().get(0).field());
+    }
+
+    @Test
+    void testAccountAlerts() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "accountAlerts.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals("412692005257255", obj.entry().get(0).changes().get(0).value().entityId());
+        Assertions.assertEquals(FieldType.ACCOUNT_ALERTS, obj.entry().get(0).changes().get(0).field());
+    }
+
+    @Test
+    void testAccountDeleted() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "accountDeleted.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(ACCOUNT_DELETED, obj.entry().get(0).changes().get(0).value().event());
+        Assertions.assertEquals(FieldType.ACCOUNT_UPDATE, obj.entry().get(0).changes().get(0).field());
+    }
+
+
+    @Test
+    void testReceiverIsIncapable() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "receiverIsIncapable.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(MessageStatus.FAILED, obj.entry().get(0).changes().get(0).value().statuses().get(0).status());
+    }
+
+
+    @Test
     void testDeserializationPhoneNumberNameUpdate() throws IOException, URISyntaxException {
         var payload = fromResource(JSON_FOLDER + "phoneNumberNameUpdate.json");
 
@@ -453,6 +556,59 @@ class WebHookPayloadTest extends TestUtils {
         Assertions.assertEquals("https://developers.facebook.com/docs/whatsapp/cloud-api/support/error-codes/", statuses.get(0).errors().get(0).href());
         Assertions.assertEquals("Message failed to send because more than 24 hours have passed since the customer last replied to this number.", statuses.get(0).errors().get(0).errorData().details());
 
+    }
+
+    @Test
+    void testOnboading() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "onboarding.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), ONBOARDING);
+    }
+
+    @Test
+    void testPartnerAdded() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "partnerAdded.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), PARTNER_ADDED);
+    }
+
+    @Test
+    void testPartnerAccountViolation() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "accountViolation.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), ACCOUNT_VIOLATION);
+    }
+
+    @Test
+    void testPartnerAppInstalled() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "partnerAppInstalled.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), PARTNER_APP_INSTALLED);
+    }
+
+    @Test
+    void testPhoneNumberAdded() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "phoneNumberAdded.json");
+
+        var obj = WebHook.constructEvent(payload);
+
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), PHONE_NUMBER_ADDED);
+    }
+
+    @Test
+    void testPhoneNumberRemoved() throws IOException, URISyntaxException {
+        var payload = fromResource(JSON_FOLDER + "phoneNumberRemoved.json");
+
+        var obj = WebHook.constructEvent(payload);
+        Assertions.assertEquals(obj.entry().get(0).changes().get(0).value().event(), PHONE_NUMBER_REMOVED);
     }
 }
 
