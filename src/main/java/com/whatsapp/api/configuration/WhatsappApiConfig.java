@@ -12,7 +12,7 @@ public class WhatsappApiConfig {
     /**
      * The constant API_VERSION.
      */
-    private static ApiVersion apiVersion = ApiVersion.V19_0;
+    private static ApiVersion apiVersion = ApiVersion.V25_0;
     /**
      * The constant BASE_DOMAIN.
      */
